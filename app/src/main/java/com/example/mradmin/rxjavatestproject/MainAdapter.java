@@ -67,7 +67,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
 
         int img = getResourceId(holder.view.getContext(), cryptoEntity.getSymbol().toLowerCase());
         if (img != 0) {
-            //holder.coinImage.setImageResource(img);
             Picasso.with(holder.view.getContext())
                     .load(img)
                     .resize(64,64)
