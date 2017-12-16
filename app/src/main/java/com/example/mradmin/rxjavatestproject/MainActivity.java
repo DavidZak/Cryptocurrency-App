@@ -45,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewMain.setAdapter(mainAdapter);
         linearLayoutManagerMain = new LinearLayoutManager(this);
         recyclerViewMain.setHasFixedSize(true);
+        recyclerViewMain.setItemViewCacheSize(20);
+        recyclerViewMain.setDrawingCacheEnabled(true);
+        recyclerViewMain.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         recyclerViewMain.setLayoutManager(linearLayoutManagerMain);
 
         fab = findViewById(R.id.fab);
@@ -107,6 +110,11 @@ public class MainActivity extends AppCompatActivity {
 
                     recyclerViewOffset = HideShowScrollListener.recyclerViewOffset;
                     recyclerViewMain.getLayoutManager().onRestoreInstanceState(recyclerViewOffset);
+
+                    recyclerViewMain.setHasFixedSize(true);
+                    recyclerViewMain.setItemViewCacheSize(20);
+                    recyclerViewMain.setDrawingCacheEnabled(true);
+                    recyclerViewMain.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
                 }
 

@@ -1,11 +1,15 @@
 package com.example.mradmin.rxjavatestproject;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -60,6 +64,19 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
         String lastSeen = timeSinceAgo.getTimeAgo(lastUpdated);
 
         holder.lastUpdated.setText(lastSeen);
+
+        int img = getResourceId(holder.view.getContext(), cryptoEntity.getSymbol().toLowerCase());
+        if (img != 0) {
+            //holder.coinImage.setImageResource(img);
+            Picasso.with(holder.view.getContext())
+                    .load(img)
+                    .resize(64,64)
+                    .into(holder.coinImage);
+        }
+    }
+
+    public static int getResourceId(Context context, String name) {
+        return context.getResources().getIdentifier(name, "drawable", "com.example.mradmin.rxjavatestproject");
     }
 
     private void setPercentChangeColor(TextView textView, double value) {
@@ -81,7 +98,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
 
         public View view;
 
-        public CircleImageView coinImage;
+        public ImageView coinImage;
 
         public TextView coinName;
         public TextView coinSymbol;

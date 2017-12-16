@@ -11,14 +11,15 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/imageViewCoinIcon"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:src="@mipmap/ic_launcher_round"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true"
+            android:layout_marginRight="4dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
