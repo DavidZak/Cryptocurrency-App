@@ -2,7 +2,7 @@ package com.example.mradmin.rxjavatestproject;
 
 import java.util.List;
 
-import retrofit2.Call;
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 
 /**
@@ -12,6 +12,6 @@ import retrofit2.http.GET;
 public interface CryptoClient {
 
     @GET("/v1/ticker/")
-    Call<List<CryptoEntity>> getCryptoInfo();
+    Observable<List<CryptoEntity>> getCryptoInfo();
 
 }

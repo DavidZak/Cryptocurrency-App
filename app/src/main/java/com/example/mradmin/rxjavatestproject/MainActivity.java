@@ -10,9 +10,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,13 +26,11 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewMain;
     private LinearLayoutManager linearLayoutManagerMain;
-    private List<CryptoEntity> cryptoEntityList = new ArrayList<>();
 
     private ImageButton imageButtonUpdateInfo;
 
     private FloatingActionButton fab;
     private Parcelable recyclerViewOffset;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         //-----------
 
-        //Setting recycler view----------
         recyclerViewMain = findViewById(R.id.recyclerViewMain);
-        MainAdapter mainAdapter = new MainAdapter(cryptoEntityList);
-        recyclerViewMain.setAdapter(mainAdapter);
-        linearLayoutManagerMain = new LinearLayoutManager(this);
-        recyclerViewMain.setHasFixedSize(true);
-        recyclerViewMain.setItemViewCacheSize(20);
-        recyclerViewMain.setDrawingCacheEnabled(true);
-        recyclerViewMain.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-        recyclerViewMain.setLayoutManager(linearLayoutManagerMain);
 
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -91,40 +85,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void arrayListInit(List<CryptoEntity> result){
+        MainAdapter mainAdapter = new MainAdapter(result);
+        recyclerViewMain.setAdapter(mainAdapter);
+        linearLayoutManagerMain = new LinearLayoutManager(this);
+        recyclerViewMain.setHasFixedSize(true);
+        recyclerViewMain.setItemViewCacheSize(20);
+        recyclerViewMain.setDrawingCacheEnabled(true);
+        recyclerViewMain.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+        recyclerViewMain.setLayoutManager(linearLayoutManagerMain);
+
+        recyclerViewOffset = HideShowScrollListener.recyclerViewOffset;
+        recyclerViewMain.getLayoutManager().onRestoreInstanceState(recyclerViewOffset);
+    }
+
     private void getCryptoInfo() {
-
-        MainApplication.getCryptoAPI().getCryptoInfo().enqueue(new Callback<List<CryptoEntity>>() {
-            @Override
-            public void onResponse(Call<List<CryptoEntity>> call, Response<List<CryptoEntity>> response) {
-
-                if (response.isSuccessful()) {
-
-                    List<CryptoEntity> cryptoEntities = response.body();
-
-                    cryptoEntityList = cryptoEntities;
-
-                    MainAdapter mainAdapter = new MainAdapter(cryptoEntityList);
-
-                    recyclerViewMain.setAdapter(mainAdapter);
-                    mainAdapter.notifyDataSetChanged();
-
-                    recyclerViewOffset = HideShowScrollListener.recyclerViewOffset;
-                    recyclerViewMain.getLayoutManager().onRestoreInstanceState(recyclerViewOffset);
-
-                    recyclerViewMain.setHasFixedSize(true);
-                    recyclerViewMain.setItemViewCacheSize(20);
-                    recyclerViewMain.setDrawingCacheEnabled(true);
-                    recyclerViewMain.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<List<CryptoEntity>> call, Throwable t) {
-
-            }
-        });
-
+        MainApplication.getCryptoAPI().getCryptoInfo()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(
+                        result -> arrayListInit(result)
+                        , Throwable::printStackTrace);
     }
 }
