@@ -13,7 +13,7 @@
 
         <item name="android:textColorPrimary">#ffffff</item>
         <item name="android:textColorSecondary">#ffffff</item>
-        <item name="android:textColorTertiary">#8c8c8c</item>
+        <item name="android:textColorTertiary">#696969</item>
     </style>
 
 </resources>

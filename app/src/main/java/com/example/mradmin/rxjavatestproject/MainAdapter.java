@@ -65,17 +65,21 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
 
         holder.lastUpdated.setText(lastSeen);
 
-        int img = getResourceId(holder.view.getContext(), cryptoEntity.getSymbol().toLowerCase());
-        if (img != 0) {
-            Picasso.with(holder.view.getContext())
-                    .load(img)
-                    .resize(64,64)
-                    .into(holder.coinImage);
-        }
+        String imgPath = "file:///android_asset/icons/" + cryptoEntity.getSymbol().toLowerCase() + ".png";
+
+        //int img = getResourceId(holder.view.getContext(), cryptoEntity.getSymbol().toLowerCase());
+        //if (img != 0) {
+
+        Picasso.with(holder.view.getContext())
+                .load(imgPath)
+                .error(R.drawable.ic_no_icon)
+                .resize(64, 64)
+                .into(holder.coinImage);
+        //}
     }
 
     public static int getResourceId(Context context, String name) {
-        return context.getResources().getIdentifier(name, "drawable", "com.example.mradmin.rxjavatestproject");
+        return context.getResources().getIdentifier(name, "assets", "com.example.mradmin.rxjavatestproject");
     }
 
     private void setPercentChangeColor(TextView textView, double value) {

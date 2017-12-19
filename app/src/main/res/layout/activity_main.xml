@@ -30,6 +30,6 @@
         app:backgroundTint="?android:colorAccent"
         app:srcCompat="@drawable/ic_to_top"
         android:tint="?android:textColorPrimary"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
 </RelativeLayout>
