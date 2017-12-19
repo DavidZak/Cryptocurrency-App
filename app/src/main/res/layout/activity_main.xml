@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.mradmin.rxjavatestproject.MainActivity"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimaryDark">
 
     <include layout="@layout/main_app_bar" android:id="@+id/main_app_bar"/>
 
@@ -27,7 +27,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="16dp"
-        app:backgroundTint="?android:colorAccent"
+        app:backgroundTint="@color/colorAccent"
         app:srcCompat="@drawable/ic_to_top"
         android:tint="?android:textColorPrimary"
         android:visibility="gone"/>
