@@ -53,11 +53,16 @@ public class CryptoDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
         cryptoId = getIntent().getExtras().getString("crypto_id");
         if (!cryptoId.isEmpty() && cryptoId != null) {
             getCryptoDetail();
         }
-
     }
 
     private void initData (List<CryptoEntity> cryptoEntities) {

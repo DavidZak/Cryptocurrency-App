@@ -58,6 +58,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
         Util.setPercentChangeColor(holder.change24H, change24H);
         Util.setPercentChangeColor(holder.change7D, change7D);
 
+        Util.setImg(holder.img1H, change1H);
+        Util.setImg(holder.img24H, change24H);
+        Util.setImg(holder.img7D, change7D);
+
         long lastUpdated = cryptoEntity.getLastUpdated();
 
         LastSeen timeSinceAgo = new LastSeen();
@@ -100,6 +104,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
         public TextView change7D;
         public TextView lastUpdated;
 
+        public ImageView img1H;
+        public ImageView img24H;
+        public ImageView img7D;
+
         public CoinViewHolder(View itemView, RecyclerViewClickListener listener) {
             super(itemView);
 
@@ -117,6 +125,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
             change24H = itemView.findViewById(R.id.textViewCoinChange24H);
             change7D = itemView.findViewById(R.id.textViewCoinChange7D);
             lastUpdated = itemView.findViewById(R.id.textViewLastUpdated);
+
+            img1H = itemView.findViewById(R.id.img1H);
+            img24H = itemView.findViewById(R.id.img24H);
+            img7D = itemView.findViewById(R.id.img7D);
 
         }
 
