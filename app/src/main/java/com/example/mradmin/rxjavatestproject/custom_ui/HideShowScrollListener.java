@@ -1,4 +1,4 @@
-package com.example.mradmin.rxjavatestproject;
+package com.example.mradmin.rxjavatestproject.custom_ui;
 
 import android.os.Parcel;
 import android.os.Parcelable;

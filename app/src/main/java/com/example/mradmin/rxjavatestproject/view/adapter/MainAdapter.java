@@ -1,10 +1,7 @@
-package com.example.mradmin.rxjavatestproject;
+package com.example.mradmin.rxjavatestproject.view.adapter;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,19 +9,22 @@ import android.view.ViewGroup;;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.mradmin.rxjavatestproject.util.LastSeen;
+import com.example.mradmin.rxjavatestproject.R;
+import com.example.mradmin.rxjavatestproject.model.CryptoEntity;
+import com.example.mradmin.rxjavatestproject.util.Util;
 import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder> {
 
+    private RecyclerViewClickListener listener;
     private List<CryptoEntity> coinsList;
 
-    public MainAdapter(List<CryptoEntity> coinsList) {
+    public MainAdapter(List<CryptoEntity> coinsList, RecyclerViewClickListener listener) {
 
+        this.listener = listener;
         this.coinsList = coinsList;
 
     }
@@ -35,7 +35,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.coin_row_layout, parent, false);
 
-        return new CoinViewHolder(v);
+        return new CoinViewHolder(v, listener);
     }
 
     @Override
@@ -54,42 +54,29 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
         holder.change24H.setText(String.valueOf(change24H) + " %");
         holder.change7D.setText(String.valueOf(change7D) + " %");
 
-        setPercentChangeColor(holder.change1H, change1H);
-        setPercentChangeColor(holder.change24H, change24H);
-        setPercentChangeColor(holder.change7D, change7D);
+        Util.setPercentChangeColor(holder.change1H, change1H);
+        Util.setPercentChangeColor(holder.change24H, change24H);
+        Util.setPercentChangeColor(holder.change7D, change7D);
 
         long lastUpdated = cryptoEntity.getLastUpdated();
 
         LastSeen timeSinceAgo = new LastSeen();
-        String lastSeen = timeSinceAgo.getTimeAgo(lastUpdated);
+        String lastSeen = timeSinceAgo.getFullStringDate(lastUpdated);
 
         holder.lastUpdated.setText(lastSeen);
 
         String imgPath = "file:///android_asset/icons/" + cryptoEntity.getSymbol().toLowerCase() + ".png";
-
-        //int img = getResourceId(holder.view.getContext(), cryptoEntity.getSymbol().toLowerCase());
-        //if (img != 0) {
 
         Picasso.with(holder.view.getContext())
                 .load(imgPath)
                 .error(R.drawable.ic_no_icon)
                 .resize(64, 64)
                 .into(holder.coinImage);
-        //}
     }
 
-    public static int getResourceId(Context context, String name) {
-        return context.getResources().getIdentifier(name, "assets", "com.example.mradmin.rxjavatestproject");
-    }
+    public interface RecyclerViewClickListener {
 
-    private void setPercentChangeColor(TextView textView, double value) {
-        if (value > 0) {
-            textView.setTextColor(Color.parseColor("#08b97c"));
-        } else if (value < 0) {
-            textView.setTextColor(Color.parseColor("#ff6060"));
-        } else {
-            textView.setTextColor(Color.parseColor("#8c8c8c"));
-        }
+        void onClick(View view, int position);
     }
 
     @Override
@@ -97,7 +84,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
         return coinsList.size();
     }
 
-    public class CoinViewHolder extends RecyclerView.ViewHolder {
+    public class CoinViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+        private RecyclerViewClickListener listener;
 
         public View view;
 
@@ -111,8 +100,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
         public TextView change7D;
         public TextView lastUpdated;
 
-        public CoinViewHolder(View itemView) {
+        public CoinViewHolder(View itemView, RecyclerViewClickListener listener) {
             super(itemView);
+
+            this.listener = listener;
+            itemView.setOnClickListener(this);
 
             view = itemView;
 
@@ -128,5 +120,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
 
         }
 
+        @Override
+        public void onClick(View v) {
+            listener.onClick(v, getAdapterPosition());
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.mradmin.rxjavatestproject;
+package com.example.mradmin.rxjavatestproject.util;
 
 import android.app.Application;
 import java.text.DateFormat;
@@ -53,6 +53,16 @@ public class LastSeen extends Application {
     }
 
     public static String getFullStringDate(long dateTime) {
+        if (dateTime < 1000000000000L) {
+            // if timestamp given in seconds, convert to millis
+            dateTime *= 1000;
+        }
+
+        long now = System.currentTimeMillis();
+        if (dateTime > now || dateTime <= 0) {
+            return "just now";
+        }
+
         return new SimpleDateFormat("EEE, d MMM yyyy HH:mm").format(new Date(dateTime));
     }
 

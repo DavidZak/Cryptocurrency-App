@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.mradmin.rxjavatestproject.view.CryptoDetailActivity"
+    tools:showIn="@layout/activity_crypto_detail">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutTopInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
+
+            <ImageView
+                android:id="@+id/imageViewCoinIcon"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true" />
+
+            <LinearLayout
+                android:id="@+id/usdLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageViewCoinIcon"
+                android:layout_centerInParent="true"
+                android:layout_margin="8dp">
+
+                <TextView
+                    android:id="@+id/textViewCoinCostUSD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:singleLine="true"
+                    android:textSize="24sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="?android:textColorPrimary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btcLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/usdLayout"
+                android:layout_centerInParent="true"
+                android:layout_margin="8dp">
+
+                <TextView
+                    android:id="@+id/textViewCoinCostBTC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:singleLine="true"
+                    android:textSize="24sp"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:textColor="?android:textColorPrimary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/percentLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btcLayout"
+                android:layout_margin="8dp"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_margin="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1h: "
+                        android:textSize="16sp"
+                        android:textColor="?android:textColorPrimary"/>
+
+                    <TextView
+                        android:id="@+id/textViewCoinChange1H"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="16sp"
+                        android:singleLine="true"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_margin="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="24h: "
+                        android:textSize="16sp"
+                        android:textColor="?android:textColorPrimary"/>
+
+                    <TextView
+                        android:id="@+id/textViewCoinChange24H"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="16sp"
+                        android:singleLine="true"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_margin="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="7d: "
+                        android:textSize="16sp"
+                        android:textColor="?android:textColorPrimary"/>
+
+                    <TextView
+                        android:id="@+id/textViewCoinChange7D"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="16sp"
+                        android:singleLine="true"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/percentLayout"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="last updated: "
+                    android:textSize="12sp"
+
+                    android:textColor="?android:textColorPrimary"
+                    android:layout_toLeftOf="@+id/textViewLastUpdated"/>
+
+                <TextView
+                    android:id="@+id/textViewLastUpdated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/percentLayout"
+                    android:layout_below="@+id/imageViewCoinIcon"
+                    android:text=""
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

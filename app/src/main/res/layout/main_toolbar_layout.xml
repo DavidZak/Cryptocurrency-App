@@ -18,16 +18,16 @@
             android:textColor="?android:textColorPrimary"
             android:layout_gravity="left|center"/>
 
-            <ImageButton
-                android:id="@+id/imageButtonUpdateInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_update"
-                android:background="@color/colorPrimary"
-                android:backgroundTint="?android:colorPrimary"
-                android:layout_gravity="right|center"
-                android:layout_marginRight="16dp"
-                android:tint="?android:textColorPrimary"/>
+        <ImageButton
+            android:id="@+id/imageButtonUpdateInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_update"
+            android:background="@color/colorPrimary"
+            android:backgroundTint="?android:colorPrimary"
+            android:layout_gravity="right|center"
+            android:layout_marginRight="16dp"
+            android:tint="?android:textColorPrimary"/>
 
     </FrameLayout>
 

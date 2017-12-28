@@ -2,6 +2,8 @@ package com.example.mradmin.rxjavatestproject;
 
 import android.app.Application;
 
+import com.example.mradmin.rxjavatestproject.model.api.CryptoClient;
+
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
