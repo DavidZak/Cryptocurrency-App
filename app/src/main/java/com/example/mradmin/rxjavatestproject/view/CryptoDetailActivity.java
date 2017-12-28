@@ -48,21 +48,16 @@ public class CryptoDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_crypto_detail);
         ButterKnife.bind(this);
 
+        cryptoId = getIntent().getExtras().getString("crypto_id");
+        if (!cryptoId.isEmpty() && cryptoId != null) {
+            getCryptoDetail();
+        }
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        cryptoId = getIntent().getExtras().getString("crypto_id");
-        if (!cryptoId.isEmpty() && cryptoId != null) {
-            getCryptoDetail();
-        }
     }
 
     private void initData (List<CryptoEntity> cryptoEntities) {
