@@ -191,9 +191,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="last updated: "
+            android:text="last updated "
             android:textSize="12sp"
-            android:textColor="?android:textColorPrimary"
             android:layout_toLeftOf="@+id/textViewLastUpdated"/>
 
         <TextView
@@ -209,7 +208,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="2dp"
+        android:layout_below="@id/relativeLayoutLastUpdatedInfo"
         android:background="?android:textColorTertiary"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"/>

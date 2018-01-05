@@ -22,79 +22,117 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_alignParentTop="true"
-                android:layout_centerInParent="true" />
+                android:layout_centerInParent="true"
+                app:srcCompat="@drawable/ic_no_icon"/>
 
             <LinearLayout
-                android:id="@+id/usdLayout"
-                android:layout_width="wrap_content"
+                android:id="@+id/headLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imageViewCoinIcon"
                 android:layout_centerInParent="true"
-                android:layout_margin="8dp">
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/textViewCoinCostUSDHead"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="USD"
+                    android:textStyle=""
+                    android:layout_weight="0.5"
+                    android:singleLine="true"
+                    android:textSize="24sp"
+                    android:layout_gravity="center"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/textViewCoinCostBTCHead"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="BTC"
+                    android:layout_weight="0.5"
+                    android:singleLine="true"
+                    android:textSize="24sp"
+                    android:layout_gravity="center"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/usdLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/headLayout"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:weightSum="1">
 
                 <TextView
                     android:id="@+id/textViewCoinCostUSD"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="1"
+                    android:layout_weight="0.5"
                     android:singleLine="true"
                     android:textSize="24sp"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:textColor="?android:textColorPrimary"/>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/btcLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/usdLayout"
-                android:layout_centerInParent="true"
-                android:layout_margin="8dp">
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:background="@color/grey"/>
 
                 <TextView
                     android:id="@+id/textViewCoinCostBTC"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="1"
+                    android:layout_weight="0.5"
                     android:singleLine="true"
                     android:textSize="24sp"
                     android:layout_gravity="center"
-                    android:gravity="right"
+                    android:gravity="center"
                     android:textColor="?android:textColorPrimary"/>
-
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/grey"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_below="@id/usdLayout"/>
+
             <LinearLayout
-                android:id="@+id/percentLayout"
+                android:id="@+id/percentLayoutHead"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/btcLayout"
+                android:layout_below="@+id/usdLayout"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="4dp"
                 android:weightSum="3">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="left">
+                    android:gravity="center">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1h: "
-                        android:textSize="16sp"
-                        android:textColor="?android:textColorPrimary"/>
-
-                    <TextView
-                        android:id="@+id/textViewCoinChange1H"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textSize="16sp"
-                        android:singleLine="true"/>
+                        android:text="1 hour"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -107,17 +145,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="24h: "
-                        android:textSize="16sp"
-                        android:textColor="?android:textColorPrimary"/>
-
-                    <TextView
-                        android:id="@+id/textViewCoinChange24H"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textSize="16sp"
-                        android:singleLine="true"/>
+                        android:text="24 hours"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -125,27 +154,97 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="right"
-                    >
+                    android:gravity="center">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="7d: "
+                        android:text="7 days"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/percentLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/percentLayoutHead"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/textViewCoinChange1H"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12"
                         android:textSize="16sp"
-                        android:textColor="?android:textColorPrimary"/>
+                        android:singleLine="true"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:background="@color/grey"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/textViewCoinChange24H"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="23"
+                        android:textSize="16sp"
+                        android:singleLine="true"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:background="@color/grey"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/textViewCoinChange7D"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="233"
                         android:textSize="16sp"
                         android:singleLine="true"/>
 
                 </LinearLayout>
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/grey"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_below="@id/percentLayout"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -157,10 +256,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="last updated: "
+                    android:text="last updated "
                     android:textSize="12sp"
-
-                    android:textColor="?android:textColorPrimary"
                     android:layout_toLeftOf="@+id/textViewLastUpdated"/>
 
                 <TextView

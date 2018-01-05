@@ -19,7 +19,6 @@
             android:layout_marginRight="8dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-
             android:src="@drawable/ic_update"
             android:background="@android:color/transparent"
             android:tint="@color/colorAccent"/>
@@ -82,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    android:text="last updated: "
+                    android:text="last updated "
                     android:singleLine="true"
                     android:textColor="#8c8c8c"
                     android:textSize="10sp" />
@@ -95,7 +94,6 @@
                     android:layout_gravity="bottom"
                     android:text="date"
                     android:singleLine="true"
-                    android:textColor="#ffffff"
                     android:textSize="10sp" />
 
             </LinearLayout>
