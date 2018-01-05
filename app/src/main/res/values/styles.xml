@@ -13,7 +13,7 @@
 
         <item name="android:textColorPrimary">#ffffff</item>
         <item name="android:textColorSecondary">#ffffff</item>
-        <item name="android:textColorTertiary">#696969</item>
+        <item name="android:textColorTertiary">#777e8e</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

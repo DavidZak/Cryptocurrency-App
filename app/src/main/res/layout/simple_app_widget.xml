@@ -83,7 +83,6 @@
                     android:layout_gravity="bottom"
                     android:text="last updated "
                     android:singleLine="true"
-                    android:textColor="#8c8c8c"
                     android:textSize="10sp" />
 
                 <TextView
