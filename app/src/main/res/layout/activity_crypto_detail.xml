@@ -27,6 +27,19 @@
                 app:layout_collapseMode="pin"
                 app:title="">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center">
+
+                    <ImageView
+                        android:id="@+id/imageViewCoinIcon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        app:srcCompat="@drawable/ic_no_icon"
+                        android:layout_marginRight="16dp"/>
+
+                </LinearLayout>
 
             </android.support.v7.widget.Toolbar>
 
@@ -41,5 +54,15 @@
         android:layout_height="36dp"
         android:layout_gravity="center"
         android:visibility="visible"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@drawable/ic_update"
+        android:tint="#ffffff"/>
 
 </android.support.design.widget.CoordinatorLayout>
