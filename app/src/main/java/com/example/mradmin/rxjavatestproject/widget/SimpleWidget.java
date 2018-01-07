@@ -12,6 +12,7 @@ import com.example.mradmin.rxjavatestproject.R;
 import com.example.mradmin.rxjavatestproject.model.CryptoEntity;
 import com.example.mradmin.rxjavatestproject.util.LastSeen;
 import com.example.mradmin.rxjavatestproject.util.Util;
+import com.example.mradmin.rxjavatestproject.view.CryptoDetailActivity;
 
 import java.util.List;
 
@@ -71,15 +72,22 @@ public class SimpleWidget extends AppWidgetProvider {
         views.setTextViewText(R.id.textViewCryptoInfoLastUpdated, lastSeen);
 
         // Construct an Intent object includes web adresss.
-        Intent intent = new Intent(context, SimpleWidget.class);
-        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        Intent intentUpdate = new Intent(context, SimpleWidget.class);
+        intentUpdate.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
 
         int[] idArray = new int[]{appWidgetId};
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, idArray);
+        intentUpdate.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, idArray);
         // In widget we are not allowing to use intents as usually. We have to use PendingIntent instead of 'startActivity'
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, appWidgetId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntentUpdate = PendingIntent.getBroadcast(context, appWidgetId, intentUpdate, PendingIntent.FLAG_UPDATE_CURRENT);
         // Here the basic operations the remote view can do.
-        views.setOnClickPendingIntent(R.id.imageButtonUpdateCryptoInfo, pendingIntent);
+        views.setOnClickPendingIntent(R.id.imageButtonUpdateCryptoInfo, pendingIntentUpdate);
+
+        Intent intentInfo = new Intent(context, CryptoDetailActivity.class);
+
+        intentInfo.putExtra("crypto_id", "bitcoin");
+        PendingIntent pendingIntentInfo = PendingIntent.getActivity(context, 0, intentInfo, 0);
+        views.setOnClickPendingIntent(R.id.tvWidget, pendingIntentInfo);
+
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
