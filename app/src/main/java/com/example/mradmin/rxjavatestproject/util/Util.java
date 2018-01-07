@@ -3,6 +3,7 @@ package com.example.mradmin.rxjavatestproject.util;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 
 import com.example.mradmin.rxjavatestproject.R;
@@ -20,6 +21,16 @@ public class Util {
             textView.setTextColor(Color.parseColor("#ff6060"));
         } else {
             textView.setTextColor(Color.parseColor("#8c8c8c"));
+        }
+    }
+
+    public static void setPercentChangeColorWidgetViews (RemoteViews views, int id, double value) {
+        if (value > 0) {
+            views.setTextColor(id, Color.parseColor("#08b97c"));
+        } else if (value < 0) {
+            views.setTextColor(id, Color.parseColor("#ff6060"));
+        } else {
+            views.setTextColor(id, Color.parseColor("#8c8c8c"));
         }
     }
 

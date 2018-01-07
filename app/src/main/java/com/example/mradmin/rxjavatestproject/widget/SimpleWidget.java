@@ -11,6 +11,7 @@ import com.example.mradmin.rxjavatestproject.MainApplication;
 import com.example.mradmin.rxjavatestproject.R;
 import com.example.mradmin.rxjavatestproject.model.CryptoEntity;
 import com.example.mradmin.rxjavatestproject.util.LastSeen;
+import com.example.mradmin.rxjavatestproject.util.Util;
 
 import java.util.List;
 
@@ -52,7 +53,15 @@ public class SimpleWidget extends AppWidgetProvider {
         //views.setTextViewText(R.id.textViewCryptoInfo, number);
         //getCryptoDetail(views);
         views.setTextViewText(R.id.textViewCryptoInfo, "Bitcoin | BTC");
-        views.setTextViewText(R.id.textViewCryptoInfoValue, String.valueOf(cryptoEntity.getPriceUSD()) + " $");
+        views.setTextViewText(R.id.textViewCryptoInfoValue, String.valueOf("$" + cryptoEntity.getPriceUSD()));
+
+        views.setTextViewText(R.id.widgetText1h, String.valueOf(cryptoEntity.getPercentChange1H()) + "%");
+        views.setTextViewText(R.id.widgetText24h, String.valueOf(cryptoEntity.getPercentChange24H()) + "%");
+        views.setTextViewText(R.id.widgetText7d, String.valueOf(cryptoEntity.getPercentChange7D()) + "%");
+
+        Util.setPercentChangeColorWidgetViews(views, R.id.widgetText1h, cryptoEntity.getPercentChange1H());
+        Util.setPercentChangeColorWidgetViews(views, R.id.widgetText24h, cryptoEntity.getPercentChange24H());
+        Util.setPercentChangeColorWidgetViews(views, R.id.widgetText7d, cryptoEntity.getPercentChange7D());
 
         long lastUpdated = cryptoEntity.getLastUpdated();
 
