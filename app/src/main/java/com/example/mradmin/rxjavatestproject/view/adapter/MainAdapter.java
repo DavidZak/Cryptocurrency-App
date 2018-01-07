@@ -44,15 +44,15 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
 
         holder.coinName.setText(cryptoEntity.getName());
         holder.coinSymbol.setText(cryptoEntity.getSymbol());
-        holder.coinCost.setText(String.valueOf(cryptoEntity.getPriceUSD()) + " $");
+        holder.coinCost.setText(String.valueOf("$" + cryptoEntity.getPriceUSD()));
 
         double change1H = cryptoEntity.getPercentChange1H();
         double change24H = cryptoEntity.getPercentChange24H();
         double change7D = cryptoEntity.getPercentChange7D();
 
-        holder.change1H.setText(String.valueOf(change1H) + " %");
-        holder.change24H.setText(String.valueOf(change24H) + " %");
-        holder.change7D.setText(String.valueOf(change7D) + " %");
+        holder.change1H.setText(String.valueOf(change1H) + "%");
+        holder.change24H.setText(String.valueOf(change24H) + "%");
+        holder.change7D.setText(String.valueOf(change7D) + "%");
 
         Util.setPercentChangeColor(holder.change1H, change1H);
         Util.setPercentChangeColor(holder.change24H, change24H);

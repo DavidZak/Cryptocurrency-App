@@ -19,6 +19,7 @@ import com.example.mradmin.rxjavatestproject.util.LastSeen;
 import com.example.mradmin.rxjavatestproject.util.Util;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -101,7 +102,7 @@ public class CryptoDetailActivity extends AppCompatActivity {
             chartEntries.add(new Entry(i, n));
         }
 
-        LineDataSet dataSet = new LineDataSet(chartEntries, "Label"); // add entries to dataset
+        LineDataSet dataSet = new LineDataSet(chartEntries, "Currency value in USD"); // add entries to dataset
 
         dataSet.setHighlightEnabled(true); // allow highlighting for DataSet
 
@@ -114,6 +115,7 @@ public class CryptoDetailActivity extends AppCompatActivity {
         dataSet.setDrawCircles(false);
         dataSet.setDrawFilled(true);
         dataSet.setFillDrawable(getResources().getDrawable(R.drawable.line_chart_background));
+        dataSet.setValueTextColor(Color.WHITE);
 
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -137,6 +139,10 @@ public class CryptoDetailActivity extends AppCompatActivity {
         rightAxis.setDrawGridLines(false);
 
         LineData lineData = new LineData(dataSet);
+        Description description = new Description();
+        description.setText("");
+        lineChart.setDescription(description);
+        lineChart.setGridBackgroundColor(getResources().getColor(R.color.grey));
         lineChart.setData(lineData);
         lineChart.invalidate(); // refresh
     }
@@ -155,15 +161,15 @@ public class CryptoDetailActivity extends AppCompatActivity {
         Picasso.with(this)
                 .load(imgPath)
                 .error(R.drawable.ic_no_icon)
-                .resize(128, 128)
+                .resize(64, 64)
                 .into(coinImage);
 
-        coinCostUSD.setText(String.valueOf(cryptoEntity.getPriceUSD()) + " $");
-        coinCostBTC.setText(String.valueOf(cryptoEntity.getPriceBTC()) + " BTC");
+        coinCostUSD.setText(String.valueOf(cryptoEntity.getPriceUSD()));
+        coinCostBTC.setText(String.valueOf(cryptoEntity.getPriceBTC()));
 
-        change1H.setText(String.valueOf(cryptoEntity.getPercentChange1H()) + " %");
-        change24H.setText(String.valueOf(cryptoEntity.getPercentChange24H()) + " %");
-        change7D.setText(String.valueOf(cryptoEntity.getPercentChange7D()) + " %");
+        change1H.setText(String.valueOf(cryptoEntity.getPercentChange1H()) + "%");
+        change24H.setText(String.valueOf(cryptoEntity.getPercentChange24H()) + "%");
+        change7D.setText(String.valueOf(cryptoEntity.getPercentChange7D()) + "%");
 
         Util.setPercentChangeColor(change1H, cryptoEntity.getPercentChange1H());
         Util.setPercentChangeColor(change24H, cryptoEntity.getPercentChange24H());
