@@ -94,8 +94,6 @@ public class CryptoDetailActivity extends AppCompatActivity {
     private void getCryptoInfo() {
         cryptoId = getIntent().getExtras().getString("crypto_id");
 
-        System.out.println("--------------------------------  " + cryptoId);
-
         if (!cryptoId.isEmpty() && cryptoId != null) {
             getCryptoDetail();
         }
