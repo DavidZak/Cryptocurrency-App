@@ -11,15 +11,12 @@
         <RelativeLayout
             android:id="@+id/relativeLayoutTopInfo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
+            android:layout_height="wrap_content">
 
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/lineChart"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
-                android:layout_marginBottom="8dp"
                 android:layout_marginTop="32dp" />
 
             <LinearLayout
@@ -28,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lineChart"
                 android:weightSum="3"
-                android:layout_marginBottom="8dp">
+                android:layout_margin="16dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -58,8 +55,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="@color/grey"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_below="@id/rangeSelectorLayout"/>
 
             <LinearLayout
@@ -68,8 +65,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rangeSelectorLayout"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginTop="8dp"
                 android:weightSum="1">
 
@@ -104,8 +101,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/headLayout"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
                 android:weightSum="1">
 
@@ -144,8 +141,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="@color/grey"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_below="@id/usdLayout"/>
 
             <LinearLayout
@@ -153,8 +150,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/usdLayout"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="4dp"
                 android:weightSum="3">
@@ -208,8 +205,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/percentLayoutHead"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
                 android:weightSum="3">
 
@@ -279,8 +276,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="@color/grey"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_below="@id/percentLayout"/>
 
             <LinearLayout
@@ -305,7 +302,7 @@
                     android:layout_below="@+id/imageViewCoinIcon"
                     android:text=""
                     android:textSize="12sp"
-                    android:layout_marginRight="8dp"/>
+                    android:layout_marginRight="16dp"/>
             </LinearLayout>
 
         </RelativeLayout>

@@ -124,7 +124,7 @@ public class CryptoDetailActivity extends AppCompatActivity {
 
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextSize(10f);
+        xAxis.setTextSize(12f);
         xAxis.setTextColor(Color.WHITE);
         xAxis.setDrawAxisLine(true);
         xAxis.setDrawGridLines(false);
@@ -133,15 +133,17 @@ public class CryptoDetailActivity extends AppCompatActivity {
         YAxis rightAxis = lineChart.getAxisRight();
 
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        leftAxis.setTextSize(10f);
+        leftAxis.setTextSize(12f);
         leftAxis.setTextColor(Color.WHITE);
         leftAxis.setDrawAxisLine(true);
         leftAxis.setDrawGridLines(false);
+        leftAxis.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
 
-        rightAxis.setTextSize(10f);
+        rightAxis.setTextSize(12f);
         rightAxis.setTextColor(Color.WHITE);
         rightAxis.setDrawAxisLine(true);
         rightAxis.setDrawGridLines(false);
+        rightAxis.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
 
         LineData lineData = new LineData(dataSet);
         Description description = new Description();
