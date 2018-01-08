@@ -1,6 +1,8 @@
 package com.example.mradmin.rxjavatestproject.view;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,8 +20,11 @@ import com.example.mradmin.rxjavatestproject.custom_ui.HideShowScrollListener;
 import com.example.mradmin.rxjavatestproject.model.CryptoEntity;
 import com.example.mradmin.rxjavatestproject.view.adapter.MainAdapter;
 import com.example.mradmin.rxjavatestproject.view.adapter.WidgetSettingsAdapter;
+import com.example.mradmin.rxjavatestproject.widget.SimpleWidget;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -68,9 +73,15 @@ public class WidgetSettingsActivity extends AppCompatActivity {
             final CryptoEntity cryptoEntity = result.get(position);
             String id = cryptoEntity.getId();
             if (!id.isEmpty() && id != null) {
-                Intent detailIntent = new Intent(this, CryptoDetailActivity.class);
-                detailIntent.putExtra("crypto_id", id);
-                startActivity(detailIntent);
+                Intent intent = new Intent(this, SimpleWidget.class);
+                intent.putExtra("crypto_id", id);
+
+                Map<String, String> keyPairs = new HashMap<>();
+                keyPairs.put("crypto_id", id);
+                MainApplication.setSharedPreferences(MainApplication.getDataSharedPreferences(), keyPairs);
+
+                //startActivity(intent);
+                sendBroadcast(intent);
             }
         };
 

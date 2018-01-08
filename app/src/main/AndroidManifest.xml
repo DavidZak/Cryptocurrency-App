@@ -41,7 +41,9 @@
                 android:resource="@xml/simple_app_widget_info" />
         </receiver>
 
-        <activity android:name=".view.WidgetSettingsActivity"></activity>
+        <activity
+            android:name=".view.WidgetSettingsActivity"
+            android:configChanges="orientation|screenSize"></activity>
     </application>
 
 </manifest>

@@ -3,8 +3,11 @@ package com.example.mradmin.rxjavatestproject.widget;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.example.mradmin.rxjavatestproject.MainApplication;
@@ -24,6 +27,52 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class SimpleWidget extends AppWidgetProvider {
+
+    private String coinIdExtra = MainApplication.getDataSharedPreferences().getString("crypto_id", "");
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context.getApplicationContext());
+        ComponentName thisWidget = new ComponentName(context.getApplicationContext(), SimpleWidget.class);
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+
+        if (appWidgetIds != null && appWidgetIds.length > 0) {
+
+            if (coinIdExtra == null || coinIdExtra.isEmpty()) {
+
+                String cryptoId = "bitcoin";
+
+                if (intent.getExtras() != null) {
+
+                    cryptoId = intent.getExtras().getString("crypto_id");
+
+                    if (cryptoId == null || cryptoId.equals("")) {
+
+                        SharedPreferences dataSharedPreferences = MainApplication.getDataSharedPreferences();
+
+                        if (dataSharedPreferences.contains("crypto_data")) {
+
+                            cryptoId = dataSharedPreferences.getString("crypto_id", "");
+
+                            if (cryptoId == null || cryptoId.equals(""))
+
+                                cryptoId = "bitcoin";
+
+                        } else {
+
+                            cryptoId = "bitcoin";
+
+                        }
+                    }
+                }
+                coinIdExtra = cryptoId;
+            }
+
+            onUpdate(context, appWidgetManager, appWidgetIds);
+        }
+    }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -53,7 +102,7 @@ public class SimpleWidget extends AppWidgetProvider {
 
         //views.setTextViewText(R.id.textViewCryptoInfo, number);
         //getCryptoDetail(views);
-        views.setTextViewText(R.id.textViewCryptoInfo, "Bitcoin | BTC");
+        views.setTextViewText(R.id.textViewCryptoInfo, String.valueOf(cryptoEntity.getName() + " | " + cryptoEntity.getSymbol()));
         views.setTextViewText(R.id.textViewCryptoInfoValue, String.valueOf("$" + cryptoEntity.getPriceUSD()));
 
         views.setTextViewText(R.id.widgetText1h, String.valueOf(cryptoEntity.getPercentChange1H()) + "%");
@@ -84,7 +133,7 @@ public class SimpleWidget extends AppWidgetProvider {
 
         Intent intentInfo = new Intent(context, CryptoDetailActivity.class);
 
-        intentInfo.putExtra("crypto_id", "bitcoin");
+        intentInfo.putExtra("crypto_id", coinIdExtra);
         PendingIntent pendingIntentInfo = PendingIntent.getActivity(context, 0, intentInfo, 0);
         views.setOnClickPendingIntent(R.id.tvWidget, pendingIntentInfo);
 
@@ -95,7 +144,7 @@ public class SimpleWidget extends AppWidgetProvider {
 
     private void getCryptoDetail (Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
 
-        MainApplication.getCryptoAPI().getCryptoDetail("bitcoin")
+        MainApplication.getCryptoAPI().getCryptoDetail(coinIdExtra)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(

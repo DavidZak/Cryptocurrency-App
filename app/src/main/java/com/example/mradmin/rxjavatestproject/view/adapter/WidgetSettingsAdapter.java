@@ -35,7 +35,7 @@ public class WidgetSettingsAdapter extends RecyclerView.Adapter<WidgetSettingsAd
     public WidgetSettingsAdapter.CurrencyViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.coin_row_layout, parent, false);
+                .inflate(R.layout.widget_currency_row_layout, parent, false);
 
         return new CurrencyViewHolder(v, listener);
     }
@@ -75,7 +75,7 @@ public class WidgetSettingsAdapter extends RecyclerView.Adapter<WidgetSettingsAd
 
             view = itemView;
 
-            coinName = itemView.findViewById(R.id.textViewCoinName);
+            coinName = itemView.findViewById(R.id.textViewCurrencyName);
 
         }
 

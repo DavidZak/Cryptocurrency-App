@@ -1,12 +1,15 @@
 package com.example.mradmin.rxjavatestproject;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.example.mradmin.rxjavatestproject.model.api.CryptoClient;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
+import java.util.Map;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
@@ -33,6 +36,8 @@ public class MainApplication extends Application {
 
     private static CryptoClient cryptoClient;
 
+    private static SharedPreferences dataSharedPreferences;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -57,7 +62,23 @@ public class MainApplication extends Application {
         retrofit = builder.build();
 
         cryptoClient = retrofit.create(CryptoClient.class);
+
+        dataSharedPreferences = getSharedPreferences("crypto_data", Context.MODE_PRIVATE);
     }
+
+    //for prefs============================
+    public static SharedPreferences getDataSharedPreferences() {
+        return dataSharedPreferences;
+    }
+
+    public static void setSharedPreferences(SharedPreferences preferences, Map<String, String> keyPairs) {
+        SharedPreferences.Editor editor = preferences.edit();
+        for (Map.Entry<String, String> entry : keyPairs.entrySet()) {
+            editor.putString(entry.getKey(), entry.getValue());
+        }
+        editor.commit();
+    }
+    //======================
 
     public static CryptoClient getCryptoAPI() {
         return cryptoClient;

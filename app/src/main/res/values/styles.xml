@@ -14,6 +14,9 @@
         <item name="android:textColorPrimary">#ffffff</item>
         <item name="android:textColorSecondary">#ffffff</item>
         <item name="android:textColorTertiary">#777e8e</item>
+
+        <!--for back arrow button-->
+        <item name="android:homeAsUpIndicator">@drawable/ic_back_indicator</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
