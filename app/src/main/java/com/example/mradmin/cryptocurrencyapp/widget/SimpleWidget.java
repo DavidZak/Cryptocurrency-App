@@ -7,6 +7,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.TaskStackBuilder;
 import android.widget.RemoteViews;
 
 import com.example.mradmin.cryptocurrencyapp.MainApplication;
@@ -15,6 +16,7 @@ import com.example.mradmin.cryptocurrencyapp.model.CryptoEntity;
 import com.example.mradmin.cryptocurrencyapp.util.LastSeen;
 import com.example.mradmin.cryptocurrencyapp.util.Util;
 import com.example.mradmin.cryptocurrencyapp.view.CryptoDetailActivity;
+import com.example.mradmin.cryptocurrencyapp.view.MainActivity;
 
 import java.util.List;
 
@@ -27,7 +29,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class SimpleWidget extends AppWidgetProvider {
 
-    private String coinIdExtra = MainApplication.getDataSharedPreferences().getString("crypto_id", "");
+    private static String coinIdExtra = MainApplication.getDataSharedPreferences().getString("crypto_id", "");
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -39,32 +41,20 @@ public class SimpleWidget extends AppWidgetProvider {
 
         if (appWidgetIds != null && appWidgetIds.length > 0) {
 
-            if (coinIdExtra == null || coinIdExtra.isEmpty()) {
+            if (intent.getExtras() != null) {
+
+                coinIdExtra = intent.getExtras().getString("crypto_id");
+
+            } else {
 
                 String cryptoId = "bitcoin";
 
-                if (intent.getExtras() != null) {
+                SharedPreferences dataSharedPreferences = MainApplication.getDataSharedPreferences();
 
-                    cryptoId = intent.getExtras().getString("crypto_id");
+                if (dataSharedPreferences.contains("crypto_data")) {
 
-                    if (cryptoId == null || cryptoId.equals("")) {
+                    cryptoId = dataSharedPreferences.getString("crypto_id", "");
 
-                        SharedPreferences dataSharedPreferences = MainApplication.getDataSharedPreferences();
-
-                        if (dataSharedPreferences.contains("crypto_data")) {
-
-                            cryptoId = dataSharedPreferences.getString("crypto_id", "");
-
-                            if (cryptoId == null || cryptoId.equals(""))
-
-                                cryptoId = "bitcoin";
-
-                        } else {
-
-                            cryptoId = "bitcoin";
-
-                        }
-                    }
                 }
                 coinIdExtra = cryptoId;
             }
@@ -131,9 +121,11 @@ public class SimpleWidget extends AppWidgetProvider {
         views.setOnClickPendingIntent(R.id.imageButtonUpdateCryptoInfo, pendingIntentUpdate);
 
         Intent intentInfo = new Intent(context, CryptoDetailActivity.class);
-
         intentInfo.putExtra("crypto_id", coinIdExtra);
-        PendingIntent pendingIntentInfo = PendingIntent.getActivity(context, 0, intentInfo, 0);
+
+        TaskStackBuilder.create(context).addNextIntentWithParentStack(intentInfo);
+
+        PendingIntent pendingIntentInfo = PendingIntent.getActivity(context, 0, intentInfo, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.tvWidget, pendingIntentInfo);
 
         // Instruct the widget manager to update the widget

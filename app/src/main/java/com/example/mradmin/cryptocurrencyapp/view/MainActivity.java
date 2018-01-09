@@ -21,7 +21,9 @@ import com.example.mradmin.cryptocurrencyapp.MainApplication;
 import com.example.mradmin.cryptocurrencyapp.R;
 import com.example.mradmin.cryptocurrencyapp.model.CryptoEntity;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

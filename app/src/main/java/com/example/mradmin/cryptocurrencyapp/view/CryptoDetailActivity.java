@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -84,8 +85,12 @@ public class CryptoDetailActivity extends AppCompatActivity {
     private void getCryptoInfo() {
         cryptoId = getIntent().getExtras().getString("crypto_id");
 
+        if (cryptoId == null) {
+            cryptoId = MainApplication.getDataSharedPreferences().getString("crypto_id", "");
+        }
+
         if (!cryptoId.isEmpty() && cryptoId != null) {
-            getCryptoDetail();
+            getCryptoDetail(cryptoId);
         }
     }
 
@@ -183,7 +188,7 @@ public class CryptoDetailActivity extends AppCompatActivity {
         initChart(cryptoEntity.getPriceUSD());
     }
 
-    private void getCryptoDetail () {
+    private void getCryptoDetail (String cryptoId) {
 
         progressBarDetail.setVisibility(View.VISIBLE);
 
