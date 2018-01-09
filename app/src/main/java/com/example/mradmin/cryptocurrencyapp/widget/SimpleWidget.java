@@ -1,4 +1,4 @@
-package com.example.mradmin.rxjavatestproject.widget;
+package com.example.mradmin.cryptocurrencyapp.widget;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -7,15 +7,14 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.widget.RemoteViews;
 
-import com.example.mradmin.rxjavatestproject.MainApplication;
+import com.example.mradmin.cryptocurrencyapp.MainApplication;
 import com.example.mradmin.rxjavatestproject.R;
-import com.example.mradmin.rxjavatestproject.model.CryptoEntity;
-import com.example.mradmin.rxjavatestproject.util.LastSeen;
-import com.example.mradmin.rxjavatestproject.util.Util;
-import com.example.mradmin.rxjavatestproject.view.CryptoDetailActivity;
+import com.example.mradmin.cryptocurrencyapp.model.CryptoEntity;
+import com.example.mradmin.cryptocurrencyapp.util.LastSeen;
+import com.example.mradmin.cryptocurrencyapp.util.Util;
+import com.example.mradmin.cryptocurrencyapp.view.CryptoDetailActivity;
 
 import java.util.List;
 

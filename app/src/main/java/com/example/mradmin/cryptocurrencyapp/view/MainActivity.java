@@ -1,4 +1,4 @@
-package com.example.mradmin.rxjavatestproject.view;
+package com.example.mradmin.cryptocurrencyapp.view;
 
 import android.content.Intent;
 import android.os.Parcelable;
@@ -15,12 +15,11 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.mradmin.rxjavatestproject.custom_ui.HideShowScrollListener;
-import com.example.mradmin.rxjavatestproject.view.adapter.MainAdapter;
-import com.example.mradmin.rxjavatestproject.MainApplication;
+import com.example.mradmin.cryptocurrencyapp.custom_ui.HideShowScrollListener;
+import com.example.mradmin.cryptocurrencyapp.view.adapter.MainAdapter;
+import com.example.mradmin.cryptocurrencyapp.MainApplication;
 import com.example.mradmin.rxjavatestproject.R;
-import com.example.mradmin.rxjavatestproject.model.CryptoEntity;
-import com.example.mradmin.rxjavatestproject.view.adapter.WidgetSettingsAdapter;
+import com.example.mradmin.cryptocurrencyapp.model.CryptoEntity;
 
 import java.util.List;
 

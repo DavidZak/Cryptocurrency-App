@@ -1,11 +1,10 @@
-package com.example.mradmin.rxjavatestproject.model.api;
+package com.example.mradmin.cryptocurrencyapp.model.api;
 
-import com.example.mradmin.rxjavatestproject.model.CryptoEntity;
+import com.example.mradmin.cryptocurrencyapp.model.CryptoEntity;
 
 import java.util.List;
 
 import io.reactivex.Observable;
-import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 

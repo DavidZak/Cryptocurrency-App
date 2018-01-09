@@ -1,7 +1,5 @@
-package com.example.mradmin.rxjavatestproject.view.adapter;
+package com.example.mradmin.cryptocurrencyapp.view.adapter;
 
-import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +7,10 @@ import android.view.ViewGroup;;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.mradmin.rxjavatestproject.util.LastSeen;
+import com.example.mradmin.cryptocurrencyapp.model.CryptoEntity;
+import com.example.mradmin.cryptocurrencyapp.util.LastSeen;
+import com.example.mradmin.cryptocurrencyapp.util.Util;
 import com.example.mradmin.rxjavatestproject.R;
-import com.example.mradmin.rxjavatestproject.model.CryptoEntity;
-import com.example.mradmin.rxjavatestproject.util.Util;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

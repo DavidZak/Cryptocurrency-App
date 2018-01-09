@@ -1,27 +1,21 @@
-package com.example.mradmin.rxjavatestproject.view;
+package com.example.mradmin.cryptocurrencyapp.view;
 
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.mradmin.rxjavatestproject.MainApplication;
+import com.example.mradmin.cryptocurrencyapp.util.LastSeen;
+import com.example.mradmin.cryptocurrencyapp.MainApplication;
 import com.example.mradmin.rxjavatestproject.R;
-import com.example.mradmin.rxjavatestproject.model.CryptoEntity;
-import com.example.mradmin.rxjavatestproject.util.LastSeen;
-import com.example.mradmin.rxjavatestproject.util.Util;
-import com.github.mikephil.charting.animation.Easing;
+import com.example.mradmin.cryptocurrencyapp.model.CryptoEntity;
+import com.example.mradmin.cryptocurrencyapp.util.Util;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
@@ -34,15 +28,11 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-
-import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class CryptoDetailActivity extends AppCompatActivity {
 

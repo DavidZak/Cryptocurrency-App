@@ -1,9 +1,6 @@
-package com.example.mradmin.rxjavatestproject.view;
+package com.example.mradmin.cryptocurrencyapp.view;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,16 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.mradmin.rxjavatestproject.MainApplication;
+import com.example.mradmin.cryptocurrencyapp.MainApplication;
+import com.example.mradmin.cryptocurrencyapp.model.CryptoEntity;
+import com.example.mradmin.cryptocurrencyapp.view.adapter.WidgetSettingsAdapter;
+import com.example.mradmin.cryptocurrencyapp.widget.SimpleWidget;
 import com.example.mradmin.rxjavatestproject.R;
-import com.example.mradmin.rxjavatestproject.custom_ui.HideShowScrollListener;
-import com.example.mradmin.rxjavatestproject.model.CryptoEntity;
-import com.example.mradmin.rxjavatestproject.view.adapter.MainAdapter;
-import com.example.mradmin.rxjavatestproject.view.adapter.WidgetSettingsAdapter;
-import com.example.mradmin.rxjavatestproject.widget.SimpleWidget;
 
 import java.util.HashMap;
 import java.util.List;

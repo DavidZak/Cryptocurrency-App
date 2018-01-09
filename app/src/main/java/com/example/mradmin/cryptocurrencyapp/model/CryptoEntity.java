@@ -1,4 +1,4 @@
-package com.example.mradmin.rxjavatestproject.model;
+package com.example.mradmin.cryptocurrencyapp.model;
 
 import android.os.Parcelable;
 

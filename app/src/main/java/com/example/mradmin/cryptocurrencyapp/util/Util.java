@@ -1,4 +1,4 @@
-package com.example.mradmin.rxjavatestproject.util;
+package com.example.mradmin.cryptocurrencyapp.util;
 
 import android.graphics.Color;
 import android.view.View;

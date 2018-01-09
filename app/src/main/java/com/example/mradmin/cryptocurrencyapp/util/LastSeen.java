@@ -1,4 +1,4 @@
-package com.example.mradmin.rxjavatestproject.util;
+package com.example.mradmin.cryptocurrencyapp.util;
 
 import android.app.Application;
 import java.text.DateFormat;

@@ -1,10 +1,10 @@
-package com.example.mradmin.rxjavatestproject;
+package com.example.mradmin.cryptocurrencyapp;
 
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.mradmin.rxjavatestproject.model.api.CryptoClient;
+import com.example.mradmin.cryptocurrencyapp.model.api.CryptoClient;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.mradmin.rxjavatestproject.view.MainActivity"
+    tools:context="com.example.mradmin.rxjavatestproject.com.example.mradmin.cryptocurrencyapp.view.MainActivity"
     android:background="@color/colorPrimaryDark">
 
     <include layout="@layout/main_app_bar" android:id="@+id/main_app_bar"/>

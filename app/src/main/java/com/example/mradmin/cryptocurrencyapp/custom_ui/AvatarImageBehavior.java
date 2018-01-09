@@ -1,4 +1,4 @@
-package com.example.mradmin.rxjavatestproject.custom_ui;
+package com.example.mradmin.cryptocurrencyapp.custom_ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
