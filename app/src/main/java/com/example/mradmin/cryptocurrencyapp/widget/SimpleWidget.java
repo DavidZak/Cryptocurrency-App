@@ -10,7 +10,7 @@ import android.content.SharedPreferences;
 import android.widget.RemoteViews;
 
 import com.example.mradmin.cryptocurrencyapp.MainApplication;
-import com.example.mradmin.rxjavatestproject.R;
+import com.example.mradmin.cryptocurrencyapp.R;
 import com.example.mradmin.cryptocurrencyapp.model.CryptoEntity;
 import com.example.mradmin.cryptocurrencyapp.util.LastSeen;
 import com.example.mradmin.cryptocurrencyapp.util.Util;

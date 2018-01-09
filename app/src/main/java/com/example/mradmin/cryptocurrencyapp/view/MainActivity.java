@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.example.mradmin.cryptocurrencyapp.custom_ui.HideShowScrollListener;
 import com.example.mradmin.cryptocurrencyapp.view.adapter.MainAdapter;
 import com.example.mradmin.cryptocurrencyapp.MainApplication;
-import com.example.mradmin.rxjavatestproject.R;
+import com.example.mradmin.cryptocurrencyapp.R;
 import com.example.mradmin.cryptocurrencyapp.model.CryptoEntity;
 
 import java.util.List;

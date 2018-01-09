@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.example.mradmin.cryptocurrencyapp.model.CryptoEntity;
 import com.example.mradmin.cryptocurrencyapp.util.LastSeen;
 import com.example.mradmin.cryptocurrencyapp.util.Util;
-import com.example.mradmin.rxjavatestproject.R;
+import com.example.mradmin.cryptocurrencyapp.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

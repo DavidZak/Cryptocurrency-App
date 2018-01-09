@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:ignore="RtlHardcoded"
     android:background="@color/colorPrimaryDark"
-    tools:context="com.example.mradmin.rxjavatestproject.com.example.mradmin.cryptocurrencyapp.view.CryptoDetailActivity">
+    tools:context="com.example.mradmin.cryptocurrencyapp.com.example.mradmin.cryptocurrencyapp.view.CryptoDetailActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"

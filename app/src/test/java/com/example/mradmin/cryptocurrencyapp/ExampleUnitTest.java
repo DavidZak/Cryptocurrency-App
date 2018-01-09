@@ -1,4 +1,4 @@
-package com.example.mradmin.rxjavatestproject;
+package com.example.mradmin.cryptocurrencyapp;
 
 import org.junit.Test;
 

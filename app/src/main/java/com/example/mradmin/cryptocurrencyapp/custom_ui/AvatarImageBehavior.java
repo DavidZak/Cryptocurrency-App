@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.example.mradmin.rxjavatestproject.R;
+import com.example.mradmin.cryptocurrencyapp.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

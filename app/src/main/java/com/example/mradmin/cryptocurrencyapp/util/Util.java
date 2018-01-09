@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 
-import com.example.mradmin.rxjavatestproject.R;
+import com.example.mradmin.cryptocurrencyapp.R;
 
 /**
  * Created by yks-11 on 12/28/17.

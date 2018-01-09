@@ -14,7 +14,7 @@ import com.example.mradmin.cryptocurrencyapp.MainApplication;
 import com.example.mradmin.cryptocurrencyapp.model.CryptoEntity;
 import com.example.mradmin.cryptocurrencyapp.view.adapter.WidgetSettingsAdapter;
 import com.example.mradmin.cryptocurrencyapp.widget.SimpleWidget;
-import com.example.mradmin.rxjavatestproject.R;
+import com.example.mradmin.cryptocurrencyapp.R;
 
 import java.util.HashMap;
 import java.util.List;

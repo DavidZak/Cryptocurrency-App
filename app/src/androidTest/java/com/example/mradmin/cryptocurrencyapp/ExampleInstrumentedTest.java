@@ -1,4 +1,4 @@
-package com.example.mradmin.rxjavatestproject;
+package com.example.mradmin.cryptocurrencyapp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
