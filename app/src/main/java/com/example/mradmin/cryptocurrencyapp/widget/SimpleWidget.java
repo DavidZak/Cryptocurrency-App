@@ -125,7 +125,11 @@ public class SimpleWidget extends AppWidgetProvider {
 
         TaskStackBuilder.create(context).addNextIntentWithParentStack(intentInfo);
 
-        PendingIntent pendingIntentInfo = PendingIntent.getActivity(context, 0, intentInfo, PendingIntent.FLAG_UPDATE_CURRENT);
+        final PendingIntent pendingIntentInfo = TaskStackBuilder.create(context)
+                .addNextIntentWithParentStack(intentInfo)
+                .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        //PendingIntent pendingIntentInfo = PendingIntent.getActivity(context, 0, intentInfo, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.tvWidget, pendingIntentInfo);
 
         // Instruct the widget manager to update the widget
