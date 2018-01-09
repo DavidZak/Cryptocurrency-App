@@ -6,6 +6,7 @@
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
     android:paddingTop="4dp"
+    android:background="@drawable/coin_row_layout_ripple"
     >
 
     <RelativeLayout
@@ -212,7 +213,7 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_below="@id/relativeLayoutLastUpdatedInfo"
-        android:background="?android:textColorTertiary"
+        android:background="@color/divider"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"/>
 
