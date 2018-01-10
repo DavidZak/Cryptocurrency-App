@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mradmin.cryptocurrencyapp.custom_ui.HideShowScrollListener;
+import com.example.mradmin.cryptocurrencyapp.custom_ui.SortTypesLayout;
 import com.example.mradmin.cryptocurrencyapp.view.adapter.MainAdapter;
 import com.example.mradmin.cryptocurrencyapp.MainApplication;
 import com.example.mradmin.cryptocurrencyapp.R;
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.imageButtonUpdateInfo) ImageButton imageButtonUpdateInfo;
     @BindView(R.id.fab) FloatingActionButton fab;
     @BindView(R.id.mainProgressBar) ProgressBar progressBarMain;
+    @BindView(R.id.imageButtonSort) ImageButton imageButtonSort;
+    @BindView(R.id.sortTypesCustomLayout)
+    SortTypesLayout sortTypesLayout;
 
     private LinearLayoutManager linearLayoutManagerMain;
     private Parcelable recyclerViewOffset;
@@ -76,6 +80,14 @@ public class MainActivity extends AppCompatActivity {
         //image button update-----------
         imageButtonUpdateInfo.setOnClickListener(view -> getCryptoInfo());
         //---------------------
+
+        sortTypesLayout.setVisibility(View.GONE);
+        imageButtonSort.setOnClickListener(view -> {
+            if (sortTypesLayout.getVisibility() == View.VISIBLE) {
+                sortTypesLayout.setVisibility(View.GONE);
+            } else sortTypesLayout.setVisibility(View.VISIBLE);
+        });
+
     }
 
     @Override
