@@ -73,6 +73,8 @@ public class CryptoDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
+        collapsingToolbarLayout.setTitle("...");
+
         fabUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
