@@ -2,7 +2,10 @@ package com.example.mradmin.cryptocurrencyapp.model;
 
 import android.os.Parcelable;
 
+import com.example.mradmin.cryptocurrencyapp.MainApplication;
 import com.google.gson.annotations.SerializedName;
+
+import retrofit2.http.QueryName;
 
 /**
  * Created by mrAdmin on 15.12.2017.
