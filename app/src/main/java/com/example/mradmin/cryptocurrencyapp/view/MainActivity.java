@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,11 +20,14 @@ import android.widget.Toast;
 
 import com.example.mradmin.cryptocurrencyapp.custom_ui.HideShowScrollListener;
 import com.example.mradmin.cryptocurrencyapp.custom_ui.SortTypesLayout;
+import com.example.mradmin.cryptocurrencyapp.util.CryptoEntityComparator;
+import com.example.mradmin.cryptocurrencyapp.util.SortTypesEnum;
 import com.example.mradmin.cryptocurrencyapp.view.adapter.MainAdapter;
 import com.example.mradmin.cryptocurrencyapp.MainApplication;
 import com.example.mradmin.cryptocurrencyapp.R;
 import com.example.mradmin.cryptocurrencyapp.model.CryptoEntity;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,11 +45,20 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.fab) FloatingActionButton fab;
     @BindView(R.id.mainProgressBar) ProgressBar progressBarMain;
     @BindView(R.id.imageButtonSort) ImageButton imageButtonSort;
-    @BindView(R.id.sortTypesCustomLayout)
-    SortTypesLayout sortTypesLayout;
+    @BindView(R.id.sortTypesCustomLayout) SortTypesLayout sortTypesLayout;
+
+    @BindView(R.id.textViewSortTypeName) TextView textViewSortTypeName;
+    @BindView(R.id.textViewSortTypeSupply) TextView textViewSortTypeSupply;
+    @BindView(R.id.textViewSortTypePrice) TextView textViewSortTypePrice;
+    @BindView(R.id.textViewSortTypePercent) TextView textViewSortTypePercent;
+    @BindView(R.id.textViewCloseSortTypes) TextView textViewCloseSortTypes;
+
 
     private LinearLayoutManager linearLayoutManagerMain;
     private Parcelable recyclerViewOffset;
+
+
+    private SortTypesEnum sortTypesEnum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,30 +89,80 @@ public class MainActivity extends AppCompatActivity {
                 });
         //-------------
 
+        sortTypesEnum = SortTypesEnum.DEFAULT;
 
         //image button update-----------
-        imageButtonUpdateInfo.setOnClickListener(view -> getCryptoInfo());
+        imageButtonUpdateInfo.setOnClickListener(view -> getCryptoInfo(sortTypesEnum));
         //---------------------
 
         sortTypesLayout.setVisibility(View.GONE);
         imageButtonSort.setOnClickListener(view -> {
             if (sortTypesLayout.getVisibility() == View.VISIBLE) {
                 sortTypesLayout.setVisibility(View.GONE);
-            } else sortTypesLayout.setVisibility(View.VISIBLE);
+            } else {
+                sortTypesLayout.setVisibility(View.VISIBLE);
+            }
         });
 
+        //for sort textViews
+        textViewSortTypeName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sortTypesEnum = SortTypesEnum.NAME;
+                getCryptoInfo(sortTypesEnum);
+                sortTypesLayout.setVisibility(View.GONE);
+            }
+        });
+        textViewSortTypeSupply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sortTypesEnum = SortTypesEnum.SUPPLY;
+                getCryptoInfo(sortTypesEnum);
+                sortTypesLayout.setVisibility(View.GONE);
+            }
+        });
+        textViewSortTypePrice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sortTypesEnum = SortTypesEnum.PRICE;
+                getCryptoInfo(sortTypesEnum);
+                sortTypesLayout.setVisibility(View.GONE);
+            }
+        });
+        textViewSortTypePercent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sortTypesEnum = SortTypesEnum.PERCENT;
+                getCryptoInfo(sortTypesEnum);
+                sortTypesLayout.setVisibility(View.GONE);
+            }
+        });
+
+        textViewCloseSortTypes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sortTypesLayout.setVisibility(View.GONE);
+            }
+        });
+
+        getCryptoInfo(sortTypesEnum);
     }
 
     @Override
     protected void onStart() {
 
         super.onStart();
-
-        getCryptoInfo();
-
     }
 
-    private void arrayListInit(List<CryptoEntity> result) {
+    @Override
+    protected void onPause() {
+
+        super.onPause();
+
+        sortTypesLayout.setVisibility(View.GONE);
+    }
+
+    private void arrayListInit(List<CryptoEntity> result, SortTypesEnum sortTypesEnum) {
 
         MainAdapter.RecyclerViewClickListener clickListener = (view, position) -> {
             Toast.makeText(this, "Position " + position, Toast.LENGTH_SHORT).show();
@@ -112,6 +175,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(detailIntent);
             }
         };
+
+        if (result.size() > 0){
+            switch (sortTypesEnum) {
+                case DEFAULT: break;
+                case NAME:Collections.sort(result, new CryptoEntityComparator.CryptoEntityComparatorName()); break;
+                case SUPPLY:Collections.sort(result, new CryptoEntityComparator.CryptoEntityComparatorSupply()); break;
+                case PRICE:Collections.sort(result, new CryptoEntityComparator.CryptoEntityComparatorPrice()); break;
+                case PERCENT:Collections.sort(result, new CryptoEntityComparator.CryptoEntityComparatorDayChange()); break;
+            }
+        }
 
         MainAdapter mainAdapter = new MainAdapter(result, clickListener);
         recyclerViewMain.setAdapter(mainAdapter);
@@ -126,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewMain.getLayoutManager().onRestoreInstanceState(recyclerViewOffset);
     }
 
-    private void getCryptoInfo() {
+    private void getCryptoInfo(SortTypesEnum sortTypesEnum) {
 
         progressBarMain.setVisibility(View.VISIBLE);
 
@@ -135,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                         result -> {
-                            arrayListInit(result);
+                            arrayListInit(result, sortTypesEnum);
 
                             progressBarMain.setVisibility(View.GONE);
                         }

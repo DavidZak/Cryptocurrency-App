@@ -39,12 +39,11 @@
                 android:layout_weight="0.5">
 
                 <TextView
-                    android:id="@+id/textViewCoinSymbol"
+                    android:id="@+id/textViewCoinName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="--"
                     android:singleLine="true"
-                    android:textStyle="bold"
                     android:textColor="?android:textColorPrimary"
                     android:gravity="right" />
 
@@ -55,12 +54,13 @@
                     android:textColor="?android:textColorPrimary"/>
 
                 <TextView
-                    android:id="@+id/textViewCoinName"
+                    android:id="@+id/textViewCoinSymbol"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="--"
                     android:gravity="left"
                     android:singleLine="true"
+                    android:textStyle="bold"
                     android:layout_marginRight="8dp"
                     android:textColor="?android:textColorPrimary"/>
 
