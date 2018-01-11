@@ -5,6 +5,8 @@ import android.os.Parcelable;
 import com.example.mradmin.cryptocurrencyapp.MainApplication;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 import retrofit2.http.QueryName;
 
 /**
@@ -19,6 +21,17 @@ public class CryptoEntity {
     private long rank;
     private double price_usd;
     private double price_btc;
+
+    public double getPrice_converted() {
+        return price_converted;
+    }
+
+    public void setPrice_converted(double price_converted) {
+        this.price_converted = price_converted;
+    }
+
+    private double price_converted;
+
 
     public double getVolume_usd_24() {
         return volume_usd_24;

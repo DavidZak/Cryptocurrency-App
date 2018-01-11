@@ -37,6 +37,8 @@ public class WidgetSettingsActivity extends AppCompatActivity {
 
     private LinearLayoutManager linearLayoutManagerCurrencies;
 
+    private String convertCurrencyDefaultValue = "USD";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +57,7 @@ public class WidgetSettingsActivity extends AppCompatActivity {
 
         super.onStart();
 
-        getCryptoInfo();
+        getCryptoInfo(convertCurrencyDefaultValue);
 
     }
 
@@ -89,9 +91,9 @@ public class WidgetSettingsActivity extends AppCompatActivity {
         recyclerViewCurrencies.setLayoutManager(linearLayoutManagerCurrencies);
     }
 
-    private void getCryptoInfo() {
+    private void getCryptoInfo(String convertCurrencyDefaultValue) {
 
-        MainApplication.getCryptoAPI().getCryptoInfo()
+        MainApplication.getCryptoAPI().getCryptoInfo(convertCurrencyDefaultValue)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(

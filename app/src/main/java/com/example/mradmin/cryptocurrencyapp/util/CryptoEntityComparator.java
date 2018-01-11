@@ -18,14 +18,6 @@ public class CryptoEntityComparator {
         }
     }
 
-    public static class CryptoEntityComparatorSupply implements Comparator<CryptoEntity> {
-
-        @Override
-        public int compare(CryptoEntity o1, CryptoEntity o2) {
-            return o1.getMax_supply() > o2.getMax_supply() ? -1 : o1.getMax_supply() == o2.getMax_supply() ? 0 : 1;
-        }
-    }
-
     public static class CryptoEntityComparatorPrice implements Comparator<CryptoEntity> {
 
         @Override

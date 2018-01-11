@@ -1,5 +1,7 @@
 package com.example.mradmin.cryptocurrencyapp.view;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.mradmin.cryptocurrencyapp.custom_ui.HideShowScrollListener;
 import com.example.mradmin.cryptocurrencyapp.custom_ui.SortTypesLayout;
+import com.example.mradmin.cryptocurrencyapp.util.Constants;
 import com.example.mradmin.cryptocurrencyapp.util.CryptoEntityComparator;
 import com.example.mradmin.cryptocurrencyapp.util.SortTypesEnum;
 import com.example.mradmin.cryptocurrencyapp.view.adapter.MainAdapter;
@@ -48,10 +51,10 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.sortTypesCustomLayout) SortTypesLayout sortTypesLayout;
 
     @BindView(R.id.textViewSortTypeName) TextView textViewSortTypeName;
-    @BindView(R.id.textViewSortTypeSupply) TextView textViewSortTypeSupply;
     @BindView(R.id.textViewSortTypePrice) TextView textViewSortTypePrice;
     @BindView(R.id.textViewSortTypePercent) TextView textViewSortTypePercent;
     @BindView(R.id.textViewCloseSortTypes) TextView textViewCloseSortTypes;
+    @BindView(R.id.textViewSelectConvertCurrency) TextView textViewConvertCurrency;
 
 
     private LinearLayoutManager linearLayoutManagerMain;
@@ -59,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private SortTypesEnum sortTypesEnum;
+    private String convertValue = "USD";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,8 +96,17 @@ public class MainActivity extends AppCompatActivity {
         sortTypesEnum = SortTypesEnum.DEFAULT;
 
         //image button update-----------
-        imageButtonUpdateInfo.setOnClickListener(view -> getCryptoInfo(sortTypesEnum));
+        imageButtonUpdateInfo.setOnClickListener(view -> getCryptoInfo(sortTypesEnum, convertValue));
         //---------------------
+
+        //for convert currency textView-------------
+        textViewConvertCurrency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showConvertCurrenciesDialog();
+            }
+        });
+        //-----------
 
         sortTypesLayout.setVisibility(View.GONE);
         imageButtonSort.setOnClickListener(view -> {
@@ -109,15 +122,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sortTypesEnum = SortTypesEnum.NAME;
-                getCryptoInfo(sortTypesEnum);
-                sortTypesLayout.setVisibility(View.GONE);
-            }
-        });
-        textViewSortTypeSupply.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sortTypesEnum = SortTypesEnum.SUPPLY;
-                getCryptoInfo(sortTypesEnum);
+                getCryptoInfo(sortTypesEnum, convertValue);
                 sortTypesLayout.setVisibility(View.GONE);
             }
         });
@@ -125,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sortTypesEnum = SortTypesEnum.PRICE;
-                getCryptoInfo(sortTypesEnum);
+                getCryptoInfo(sortTypesEnum, convertValue);
                 sortTypesLayout.setVisibility(View.GONE);
             }
         });
@@ -133,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sortTypesEnum = SortTypesEnum.PERCENT;
-                getCryptoInfo(sortTypesEnum);
+                getCryptoInfo(sortTypesEnum, convertValue);
                 sortTypesLayout.setVisibility(View.GONE);
             }
         });
@@ -145,7 +150,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        getCryptoInfo(sortTypesEnum);
+        getCryptoInfo(sortTypesEnum, convertValue);
+    }
+
+    private void showConvertCurrenciesDialog(){
+
+        AlertDialog.Builder myDialog =
+                new AlertDialog.Builder(MainActivity.this, R.style.AppCompatAlertDialogStyle);
+        myDialog.setTitle("Select Currency For Converting");
+        myDialog.setItems(Constants.CONVERT_CURRENCIES, new DialogInterface.OnClickListener(){
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String item = Constants.CONVERT_CURRENCIES[which];
+                Toast.makeText(MainActivity.this,
+                        item, Toast.LENGTH_LONG).show();
+                convertValue = item;
+
+                textViewConvertCurrency.setText(item);
+
+                getCryptoInfo(sortTypesEnum, convertValue);
+
+            }});
+
+        myDialog.show();
     }
 
     @Override
@@ -180,7 +208,6 @@ public class MainActivity extends AppCompatActivity {
             switch (sortTypesEnum) {
                 case DEFAULT: break;
                 case NAME:Collections.sort(result, new CryptoEntityComparator.CryptoEntityComparatorName()); break;
-                case SUPPLY:Collections.sort(result, new CryptoEntityComparator.CryptoEntityComparatorSupply()); break;
                 case PRICE:Collections.sort(result, new CryptoEntityComparator.CryptoEntityComparatorPrice()); break;
                 case PERCENT:Collections.sort(result, new CryptoEntityComparator.CryptoEntityComparatorDayChange()); break;
             }
@@ -199,11 +226,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewMain.getLayoutManager().onRestoreInstanceState(recyclerViewOffset);
     }
 
-    private void getCryptoInfo(SortTypesEnum sortTypesEnum) {
+    private void getCryptoInfo(SortTypesEnum sortTypesEnum, String convertValue) {
 
         progressBarMain.setVisibility(View.VISIBLE);
 
-        MainApplication.getCryptoAPI().getCryptoInfo()
+        MainApplication.getCryptoAPI().getCryptoInfo(convertValue)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(

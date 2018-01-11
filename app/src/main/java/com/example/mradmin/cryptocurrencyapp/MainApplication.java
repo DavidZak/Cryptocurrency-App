@@ -4,7 +4,11 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.mradmin.cryptocurrencyapp.model.CryptoEntity;
 import com.example.mradmin.cryptocurrencyapp.model.api.CryptoClient;
+import com.example.mradmin.cryptocurrencyapp.util.CryptoEntityDeserializer;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -20,6 +24,7 @@ import javax.net.ssl.X509TrustManager;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -56,7 +61,7 @@ public class MainApplication extends Application {
         builder = new Retrofit.Builder()
                 .baseUrl("https://api.coinmarketcap.com/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(createGsonConverter())
                 .client(okHttp.build());
 
         retrofit = builder.build();
@@ -64,6 +69,13 @@ public class MainApplication extends Application {
         cryptoClient = retrofit.create(CryptoClient.class);
 
         dataSharedPreferences = getSharedPreferences("crypto_data", Context.MODE_PRIVATE);
+    }
+
+    private Converter.Factory createGsonConverter() {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(CryptoEntity.class, new CryptoEntityDeserializer());
+        Gson gson = gsonBuilder.create();
+        return GsonConverterFactory.create(gson);
     }
 
     //for prefs============================

@@ -7,7 +7,6 @@ package com.example.mradmin.cryptocurrencyapp.util;
 public enum SortTypesEnum {
     DEFAULT,
     NAME,
-    SUPPLY,
     PRICE,
     PERCENT
 }

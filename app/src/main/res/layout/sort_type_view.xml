@@ -19,31 +19,13 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_centerInParent="true"
-            android:weightSum="4">
+            android:weightSum="3">
 
             <TextView
                 android:id="@+id/textViewSortTypeName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="name"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:singleLine="true"/>
-
-            <View
-                android:layout_width="1px"
-                android:layout_height="match_parent"
-                android:background="@color/divider"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"/>
-
-            <TextView
-                android:id="@+id/textViewSortTypeSupply"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="supply"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:paddingTop="16dp"

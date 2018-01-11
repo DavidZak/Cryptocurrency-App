@@ -74,6 +74,16 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
                 .error(R.drawable.ic_no_icon)
                 .resize(64, 64)
                 .into(holder.coinImage);
+
+        Double coinCostConverted = cryptoEntity.getPrice_converted();
+        if (coinCostConverted != null) {
+            if (holder.coinCostConvert.getVisibility() != View.VISIBLE){
+                holder.coinCostConvert.setVisibility(View.VISIBLE);
+            }
+            holder.coinCostConvert.setText(coinCostConverted.toString());
+        } else if (holder.coinCostConvert.getVisibility() != View.GONE) {
+            holder.coinCostConvert.setVisibility(View.GONE);
+        }
     }
 
     public interface RecyclerViewClickListener {
@@ -101,6 +111,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
         public TextView change24H;
         public TextView change7D;
         public TextView lastUpdated;
+        public TextView coinCostConvert;
 
         public ImageView img1H;
         public ImageView img24H;
@@ -123,6 +134,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
             change24H = itemView.findViewById(R.id.textViewCoinChange24H);
             change7D = itemView.findViewById(R.id.textViewCoinChange7D);
             lastUpdated = itemView.findViewById(R.id.textViewLastUpdated);
+            coinCostConvert = itemView.findViewById(R.id.textViewCoinCostConvert);
 
             img1H = itemView.findViewById(R.id.img1H);
             img24H = itemView.findViewById(R.id.img24H);
