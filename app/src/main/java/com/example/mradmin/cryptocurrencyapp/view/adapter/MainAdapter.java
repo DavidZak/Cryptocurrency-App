@@ -76,7 +76,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
                 .into(holder.coinImage);
 
         Double coinCostConverted = cryptoEntity.getPrice_converted();
-        if (coinCostConverted != null) {
+        if (coinCostConverted != null && coinCostConverted != 0.0) {
             if (holder.coinCostConvert.getVisibility() != View.VISIBLE){
                 holder.coinCostConvert.setVisibility(View.VISIBLE);
             }
