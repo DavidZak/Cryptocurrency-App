@@ -12,6 +12,7 @@ import com.google.gson.JsonParseException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -35,32 +36,51 @@ public class CryptoEntityDeserializer implements JsonDeserializer<CryptoEntity> 
     public CryptoEntity deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         final JsonObject jsonObject = json.getAsJsonObject();
 
-        // Read simple String values.
-        final String id = jsonObject.get(KEY_ID).getAsString();
-        final String name = jsonObject.get(KEY_NAME).getAsString();
-        final String symbol = jsonObject.get(KEY_SYMBOL).getAsString();
-        final long rank = jsonObject.get(KEY_RANK).getAsLong();
-        final double priceUSD = jsonObject.get(KEY_PRICE_USD).getAsDouble();
-        final double priceBTC = jsonObject.get(KEY_PRICE_BTC).getAsDouble();
-        final double percentChange1H = jsonObject.get(KEY_PERCENT_1H).getAsDouble();
-        final double percentChange24H = jsonObject.get(KEY_PERCENT_24H).getAsDouble();
-        final double percentChange7D = jsonObject.get(KEY_PERCENT_7D).getAsDouble();
-        final long lastUpdated = jsonObject.get(KEY_LAST_UPDATED).getAsLong();
+        String id = readStringElement(jsonObject, KEY_ID);
+        String name = readStringElement(jsonObject, KEY_NAME);
+        String symbol = readStringElement(jsonObject, KEY_SYMBOL);
+        Long rank = readLongElement(jsonObject, KEY_RANK);
+        Double priceUSD = readDoubleElement(jsonObject, KEY_PRICE_USD);
+        Double priceBTC = readDoubleElement(jsonObject, KEY_PRICE_BTC);
+        Double percentChange1H = readDoubleElement(jsonObject, KEY_PERCENT_1H);
+        Double percentChange24H = readDoubleElement(jsonObject, KEY_PERCENT_24H);
+        Double percentChange7D = readDoubleElement(jsonObject, KEY_PERCENT_7D);
+        Long lastUpdated = readLongElement(jsonObject, KEY_LAST_UPDATED);
 
         // Read the dynamic parameters object.
         final Double priceConverted = readPriceConverted(jsonObject);
 
         CryptoEntity result = new CryptoEntity();
-        result.setId(id);
-        result.setName(name);
-        result.setSymbol(symbol);
-        result.setRank(rank);
-        result.setPriceUSD(priceUSD);
-        result.setPriceBTC(priceBTC);
-        result.setPercentChange1H(percentChange1H);
-        result.setPercentChange24H(percentChange24H);
-        result.setPercentChange7D(percentChange7D);
-        result.setLastUpdated(lastUpdated);
+
+        if (id != null)
+            result.setId(id);
+
+        if (name != null)
+            result.setName(name);
+
+        if (symbol != null)
+            result.setSymbol(symbol);
+
+        if (rank != null)
+            result.setRank(rank);
+
+        if (priceUSD != null)
+            result.setPriceUSD(priceUSD);
+
+        if (priceBTC != null)
+            result.setPriceBTC(priceBTC);
+
+        if (percentChange1H != null)
+            result.setPercentChange1H(percentChange1H);
+
+        if (percentChange24H != null)
+            result.setPercentChange24H(percentChange24H);
+
+        if (percentChange7D != null)
+            result.setPercentChange7D(percentChange7D);
+
+        if (lastUpdated != null)
+            result.setLastUpdated(lastUpdated);
 
         if (priceConverted != null)
             result.setPrice_converted(priceConverted);
@@ -74,11 +94,44 @@ public class CryptoEntityDeserializer implements JsonDeserializer<CryptoEntity> 
             String price = "price_" + currency.toLowerCase();
 
             final JsonElement priceElement = jsonObject.get(price);
-            if (priceElement != null) {
+            if (priceElement != null && !priceElement.isJsonNull()) {
 
                 final double priceConverted = priceElement.getAsDouble();
                 return priceConverted;
             }
+        }
+        return null;
+    }
+
+    @Nullable
+    private Double readDoubleElement(@NonNull final JsonObject jsonObject, String name) {
+        final JsonElement element = jsonObject.get(name);
+        if (element != null && !element.isJsonNull()) {
+
+            final double value = element.getAsDouble();
+            return value;
+        }
+        return null;
+    }
+
+    @Nullable
+    private String readStringElement(@NonNull final JsonObject jsonObject, String name) {
+        final JsonElement element = jsonObject.get(name);
+        if (element != null && !element.isJsonNull()) {
+
+            final String value = element.getAsString();
+            return value;
+        }
+        return null;
+    }
+
+    @Nullable
+    private Long readLongElement(@NonNull final JsonObject jsonObject, String name) {
+        final JsonElement element = jsonObject.get(name);
+        if (element != null && !element.isJsonNull()) {
+
+            final long value = element.getAsLong();
+            return value;
         }
         return null;
     }

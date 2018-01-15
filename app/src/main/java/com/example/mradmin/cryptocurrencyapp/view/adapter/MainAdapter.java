@@ -20,6 +20,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
     private RecyclerViewClickListener listener;
     private List<CryptoEntity> coinsList;
 
+    public static String convertedCurrencyName;
+
     public MainAdapter(List<CryptoEntity> coinsList, RecyclerViewClickListener listener) {
 
         this.listener = listener;
@@ -80,7 +82,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
             if (holder.coinCostConvert.getVisibility() != View.VISIBLE){
                 holder.coinCostConvert.setVisibility(View.VISIBLE);
             }
-            holder.coinCostConvert.setText(coinCostConverted.toString());
+            holder.coinCostConvert.setText(convertedCurrencyName + " " + coinCostConverted.toString());
         } else if (holder.coinCostConvert.getVisibility() != View.GONE) {
             holder.coinCostConvert.setVisibility(View.GONE);
         }
