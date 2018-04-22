@@ -29,7 +29,7 @@
         <activity
             android:name="com.example.mradmin.cryptocurrencyapp.view.CryptoDetailActivity"
             android:configChanges="orientation|screenSize"
-            android:parentActivityName="com.example.mradmin.cryptocurrencyapp.view.MainActivity"></activity>
+            android:parentActivityName="com.example.mradmin.cryptocurrencyapp.view.MainActivity"/>
 
         <receiver android:name="com.example.mradmin.cryptocurrencyapp.widget.SimpleWidget">
             <intent-filter>
@@ -43,7 +43,7 @@
 
         <activity
             android:name="com.example.mradmin.cryptocurrencyapp.view.WidgetSettingsActivity"
-            android:configChanges="orientation|screenSize"></activity>
+            android:configChanges="orientation|screenSize"/>
     </application>
 
 </manifest>
