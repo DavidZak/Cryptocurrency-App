@@ -53,7 +53,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1px"
+                android:layout_height="1dp"
                 android:background="@color/divider"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
@@ -119,7 +119,7 @@
                     android:textColor="?android:textColorPrimary"/>
 
                 <View
-                    android:layout_width="1px"
+                    android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_margin="4dp"
                     android:background="@color/divider"/>
@@ -139,7 +139,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1px"
+                android:layout_height="1dp"
                 android:background="@color/divider"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
@@ -227,7 +227,7 @@
                 </LinearLayout>
 
                 <View
-                    android:layout_width="1px"
+                    android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_margin="4dp"
                     android:background="@color/divider"/>
@@ -249,7 +249,7 @@
                 </LinearLayout>
 
                 <View
-                    android:layout_width="1px"
+                    android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_margin="4dp"
                     android:background="@color/divider"/>
@@ -274,7 +274,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1px"
+                android:layout_height="1dp"
                 android:background="@color/divider"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"

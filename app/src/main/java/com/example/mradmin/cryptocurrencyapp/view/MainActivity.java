@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
     private SortTypesEnum sortTypesEnum;
     private String convertValue = "USD";
 
+    MainAdapter mainAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -213,7 +215,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        MainAdapter mainAdapter = new MainAdapter(result, clickListener);
+        mainAdapter = new MainAdapter(result, clickListener);
+        mainAdapter.setConvertCurrencyName(convertValue);
         recyclerViewMain.setAdapter(mainAdapter);
         linearLayoutManagerMain = new LinearLayoutManager(this);
         recyclerViewMain.setHasFixedSize(true);

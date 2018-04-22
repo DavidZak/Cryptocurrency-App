@@ -3,35 +3,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp"
-    android:paddingTop="4dp"
-    android:background="@drawable/coin_row_layout_ripple"
-    >
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
+    android:paddingTop="8dp"
+    android:background="@drawable/coin_row_layout_ripple">
 
     <RelativeLayout
         android:id="@+id/relativeLayoutTopInfo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageViewCoinIcon"
             android:layout_width="32dp"
             android:layout_height="32dp"
             app:srcCompat="@drawable/ic_no_icon"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_centerInParent="true" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/imageViewCoinIcon"
+            android:layout_toEndOf="@+id/imageViewCoinIcon"
             android:layout_centerInParent="true"
             android:weightSum="1"
-            android:layout_marginLeft="8dp">
+            android:layout_marginStart="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -46,7 +42,7 @@
                     android:text="--"
                     android:singleLine="true"
                     android:textColor="?android:textColorPrimary"
-                    android:gravity="right" />
+                    android:gravity="end" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -59,10 +55,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="--"
-                    android:gravity="left"
+                    android:gravity="start"
                     android:singleLine="true"
                     android:textStyle="bold"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
                     android:textColor="?android:textColorPrimary"/>
 
             </LinearLayout>
@@ -77,10 +73,10 @@
                     android:id="@+id/textViewCoinCost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="$--"
+                    android:text="--"
                     android:singleLine="true"
-                    android:layout_gravity="right"
-                    android:gravity="right"
+                    android:layout_gravity="end"
+                    android:gravity="end"
                     android:textColor="?android:textColorPrimary"/>
 
                 <TextView
@@ -89,10 +85,11 @@
                     android:layout_height="wrap_content"
                     android:text="--"
                     android:singleLine="true"
-                    android:layout_gravity="right"
-                    android:gravity="right"
+                    android:layout_gravity="end"
+                    android:gravity="end"
                     android:textColor="?android:textColorPrimary"
-                    android:visibility="gone"/>
+                    android:visibility="gone"
+                    android:paddingTop="4dp"/>
 
             </LinearLayout>
 
@@ -104,10 +101,7 @@
         android:id="@+id/relativeLayoutBottomInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginTop="8dp"
         android:layout_below="@+id/relativeLayoutTopInfo"
         android:layout_centerInParent="true">
 
@@ -120,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="left|center">
+                android:gravity="start|center">
 
                 <ImageView
                     android:id="@+id/img1H"
@@ -174,7 +168,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="right|center">
+                android:gravity="end|center">
 
                 <ImageView
                     android:id="@+id/img7D"
@@ -206,17 +200,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/relativeLayoutBottomInfo"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp">
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="last updated "
             android:textSize="12sp"
-            android:layout_toLeftOf="@+id/textViewLastUpdated"/>
+            android:layout_toStartOf="@+id/textViewLastUpdated"/>
 
         <TextView
             android:id="@+id/textViewLastUpdated"
@@ -230,10 +222,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1px"
+        android:layout_height="1dp"
         android:layout_below="@id/relativeLayoutLastUpdatedInfo"
-        android:background="@color/divider"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"/>
+        android:background="@color/divider" />
 
 </RelativeLayout>

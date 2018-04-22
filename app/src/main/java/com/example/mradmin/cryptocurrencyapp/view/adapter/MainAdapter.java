@@ -20,6 +20,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
     private RecyclerViewClickListener listener;
     private List<CryptoEntity> coinsList;
 
+    private String convertCurrency;
+
     public MainAdapter(List<CryptoEntity> coinsList, RecyclerViewClickListener listener) {
 
         this.listener = listener;
@@ -42,7 +44,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
 
         holder.coinName.setText(cryptoEntity.getName());
         holder.coinSymbol.setText(cryptoEntity.getSymbol());
-        holder.coinCost.setText(String.valueOf("$" + cryptoEntity.getPriceUSD()));
+        holder.coinCost.setText(String.valueOf("USD " + cryptoEntity.getPriceUSD()));
 
         double change1H = cryptoEntity.getPercentChange1H();
         double change24H = cryptoEntity.getPercentChange24H();
@@ -77,13 +79,21 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
 
         Double coinCostConverted = cryptoEntity.getPrice_converted();
         if (coinCostConverted != null && coinCostConverted != 0.0) {
-            if (holder.coinCostConvert.getVisibility() != View.VISIBLE){
+            if (holder.coinCostConvert.getVisibility() != View.VISIBLE) {
                 holder.coinCostConvert.setVisibility(View.VISIBLE);
             }
-            holder.coinCostConvert.setText(coinCostConverted.toString());
+            if (this.convertCurrency != null && !this.convertCurrency.isEmpty()) {
+                holder.coinCostConvert.setText(this.convertCurrency + " " + coinCostConverted.toString());
+            } else {
+                holder.coinCostConvert.setText(coinCostConverted.toString());
+            }
         } else if (holder.coinCostConvert.getVisibility() != View.GONE) {
             holder.coinCostConvert.setVisibility(View.GONE);
         }
+    }
+
+    public void setConvertCurrencyName(String currency){
+        this.convertCurrency = currency;
     }
 
     public interface RecyclerViewClickListener {

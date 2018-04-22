@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#272c36</color>
-    <color name="colorPrimaryDark">#1c2028</color>
+    <color name="colorPrimary">#24333b</color>
+    <color name="colorPrimaryDark">#1d2c33</color>
     <color name="colorAccent">#08b97c</color>
 
     <color name="colorrr">#f15151</color>
 
-    <color name="grey">#606674</color>
+    <color name="grey">#597179</color>
 
-    <color name="rippleEffect">#2f3440</color>
+    <color name="rippleEffect">#2d3a41</color>
 
-    <color name="divider">#303643</color>
+    <color name="divider">#2d3a41</color>
 
 </resources>
