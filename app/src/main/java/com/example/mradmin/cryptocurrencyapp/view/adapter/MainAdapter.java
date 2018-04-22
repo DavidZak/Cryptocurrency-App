@@ -26,7 +26,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CoinViewHolder
 
         this.listener = listener;
         this.coinsList = coinsList;
-
     }
 
     @Override

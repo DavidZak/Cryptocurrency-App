@@ -169,8 +169,6 @@ public class MainActivity extends AppCompatActivity {
                         item, Toast.LENGTH_LONG).show();
                 convertValue = item;
 
-                MainAdapter.convertedCurrencyName = item;
-
                 textViewConvertCurrency.setText(item);
 
                 getCryptoInfo(sortTypesEnum, convertValue);
