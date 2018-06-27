@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -12,10 +11,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.mradmin.cryptocurrencyapp.util.LastSeen;
 import com.example.mradmin.cryptocurrencyapp.MainApplication;
 import com.example.mradmin.cryptocurrencyapp.R;
 import com.example.mradmin.cryptocurrencyapp.model.CryptoEntity;
+import com.example.mradmin.cryptocurrencyapp.util.LastSeen;
 import com.example.mradmin.cryptocurrencyapp.util.Util;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
@@ -66,6 +65,12 @@ public class CryptoDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_crypto_detail);
         ButterKnife.bind(this);
 
+        cryptoId = getIntent().getExtras().getString("crypto_id");
+
+        if (cryptoId == null) {
+            cryptoId = MainApplication.getDataSharedPreferences().getString("crypto_id", "");
+        }
+
         getCryptoInfo();
 
         setSupportActionBar(toolbar);
@@ -85,11 +90,6 @@ public class CryptoDetailActivity extends AppCompatActivity {
     }
 
     private void getCryptoInfo() {
-        cryptoId = getIntent().getExtras().getString("crypto_id");
-
-        if (cryptoId == null) {
-            cryptoId = MainApplication.getDataSharedPreferences().getString("crypto_id", "");
-        }
 
         if (!cryptoId.isEmpty() && cryptoId != null) {
             getCryptoDetail(cryptoId);
@@ -97,6 +97,8 @@ public class CryptoDetailActivity extends AppCompatActivity {
     }
 
     private void initChart(double value) {
+
+        lineChart.clear();
 
         //chartEntries.add(new Entry(chartEntries.size(), (float) value));
         for (int i=0;i< 100;i++) {
